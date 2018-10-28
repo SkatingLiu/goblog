@@ -26,7 +26,7 @@ func (this *AccountController) Login() {
 			var user models.User
 			user.UserName = account
 			if user.Read("user_name") != nil || user.Password != util.Md5([]byte(password)) {
-				this.Data["errmsg"] = "帐号或密码错误"
+				this.Data["errmsg"] = "帐号或密码错误"+user.Password+user.UserName
 			} else if user.Active == 0 {
 				this.Data["errmsg"] = "该帐号未激活"
 			} else {
